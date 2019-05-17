@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GW2 | Profit App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <div id="dataChartOverlay">
+        <a href="javascript:void(0)" id="closebtn" class="closebtn">&times;</a>
+        <section id="dataChart">
+            <p><strong>NOTE:</strong> Data Chart used for quick copy/paste to google spread sheet. View a google sheet template <a href="https://docs.google.com/spreadsheets/d/1egoWbAwC6I8ztUQZOol8aIGoK0Tm3PiKU9AP3ymb5Tk/edit?usp=sharing" target="_blank">here</a>.</p>
+        </section>
+    </div>
+    <header>
+        <h1><a href="#"><strong>Guild Wars 2</strong> | Profit Calculator</a></h1>
+        <nav>
+            <ul>
+                <li><a href="#">Spirit Shards</a></li>
+                <li>Karma</li>
+                <li>Laurels</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accountAPI">
+            <label class="addAPI">
+                <input type="text" name="apiInput" id="apiInput" placeholder="Enter your Guild Wars 2 Account API">
+                <span class="button" id="addAccountAPI">add</span>
+            </label>
+            <span id="displaySS" class="coinContainer">
+                <span class="descriptor">Spirit Shards Owned: </span><span id="ssOwned">N/A</span>
+                <span class="descriptor">Potential Profit: </span><span id="ssProfit" class="coinContainer">N/A</span>
+            </span>
+        </section>
+
+        <section id="displayOptions">
+            <label class="avgResult">
+                <span>Set Personal Average Result </span>
+                <input type="text" name="avgResultInput" id="avgResultInput" placeholder="6.91">
+                <span class="button" id="setavgResult">set</span>
+                <span class="button" id="resetavgResult">reset</span>
+            </label>
+            <label class="profitBreakpoint">
+                <span>Set Your Ideal Profit Break Point </span>
+                <input type="text" name="breakpointInput" id="breakpointInput" placeholder="20.00">
+                <span class="button" id="setBreakpoint">set</span>
+                <span class="button" id="resetBreakpoint">reset</span>
+            </label>
+            <span class="button" id="displayDataChart">View Data Chart</span>
+            <label class="refreshData">
+                <span>Refresh Data every 5 minutes? </span>
+                <input type="checkbox" name="setRefresh" id="setRefresh">
+            </label>
+        </section>
+
+        <section id="displayData"></section>
+    </main>
+
+    <footer>
+        <h3>Guild Wars 2 | Profit Calculator App created by: Ewon.5903</h3>
+        <p>
+        ©2010–2018 ArenaNet, LLC. All rights reserved. Guild Wars, Guild Wars 2, Heart of Thorns, Guild Wars 2: Path of Fire, 
+        ArenaNet, NCSOFT, the Interlocking NC Logo, and all associated logos and designs are trademarks or registered trademarks 
+        of NCSOFT Corporation. All other trademarks are the property of their respective owners.
+        </p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

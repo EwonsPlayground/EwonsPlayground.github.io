@@ -1,0 +1,364 @@
+// Variables
+$outerPadding: 15px;
+$innerPadding: 10px;
+$buttonAndFieldHeight: 32px;
+$headerFont: Georgia, 'Times New Roman', Times, serif;
+$contentFont: Calibri, Arial, sans-serif;
+
+// Colors
+$bannerColor: #e0261c;
+$linkColor: snow;
+$inactiveLinkColor: #ef908b;
+$bodyBGColor: #dbd0c0;
+$sectionBGColor: snow;
+$buttonColor: #e0261c;
+$buttonHoverColor: #e54b42;
+$textFieldBorderColor: black;
+$tableHeaderBGColor: #43464D;
+$tableHeaderFontColor: snow;
+$tableAltColor: #eeeeee;
+$footerBGColor: #4e4141;
+$footerFontColor: snow;
+
+$profitBorderColor: #46CB18;
+$profitBGColor: #88D969;
+
+// Mixins
+@mixin flexBox {
+    display: -webkit-flex;
+    display: flex; 
+}
+
+@mixin alignItems {
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+@mixin justifyContent {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+/* Reseting Elements */
+* {
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	margin: 0 auto;
+    width: 100%;
+    background-color: $bodyBGColor;
+    
+    #dataChartOverlay {
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0; 
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255,255,255,0.7); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+        .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+          }
+
+        #closebtn {
+            padding: 8px;
+            text-decoration: none;
+            font-family: 'Lato', sans-serif;
+            color: $buttonColor;
+            display: block; /* Display block instead of inline */
+        }
+
+        #closebtn:hover, #closebtn:focus {
+            color: $buttonHoverColor;
+        }
+
+        #dataChart {
+            position: relative;
+            top: 25%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            background-color: white;
+            box-shadow: 0 0 12px #888;
+            margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+
+            p {
+                text-align: center;
+                padding: 5px;
+            }
+
+            table {
+                width: 100%;
+                border: 1px solid black;
+
+                th {
+                    background-color: $tableHeaderBGColor	;
+                    color: $tableHeaderFontColor;
+                    padding: 5px;
+                }
+
+                td {
+                    text-align: center;
+                    padding: 6px;
+                    border: 1px solid black;
+                }
+
+                .profitable {
+                    background-color: $profitBGColor;
+                }
+
+                tr:nth-child(odd) {
+                    background-color: $tableAltColor;
+                }
+            }
+        }
+      }
+
+    // Shared Styles
+    .coinContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .coinImage {
+        margin-left: 3px;
+        margin-right: 4px;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: $bannerColor;
+        width: 100%;
+        height: 50px;
+        color: $inactiveLinkColor;
+        font-family: $headerFont;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: $outerPadding;
+        padding-right: $outerPadding;
+        @include flexBox();
+        @include alignItems();
+        @include justifyContent();
+
+        h1 {
+            font-weight: normal;
+            font-size: 24px;
+
+            a {
+                text-decoration: none;
+                color: $linkColor;
+            }
+
+            a:visited {
+                color: $linkColor;
+            }
+        }
+
+        nav {
+            ul {
+                list-style-type: none;
+                @include flexBox();
+
+                li {
+                    text-align: center;
+                    -webkit-align-items: center;
+                    align-items: center;
+                    padding: 0 6px 0 6px;
+                    border-right: 1px solid $inactiveLinkColor;
+
+                    a {
+                        text-decoration: none;
+                        color: $linkColor;
+                    }
+
+                    a:visited {
+                        color: $linkColor;
+                    }
+
+                    a:hover {
+                        font-weight: bold;
+                    }
+                }
+
+                li:last-of-type { 
+                    border-right: none;
+                }
+            }
+        }
+    }
+
+    /* Main Styles */
+    main {
+        width: 100%;
+        padding: $outerPadding;
+
+        input[type="text"] {
+            border: 1px solid $textFieldBorderColor;
+            height: $buttonAndFieldHeight;
+            padding: 6px;
+            font-family: $contentFont;
+            font-size: 18px;
+        }
+
+        .button {
+            background-color: $buttonColor;
+            color: $linkColor;
+            height: $buttonAndFieldHeight;
+            padding: 6px 10px 6px 10px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: $buttonHoverColor;
+        }
+
+        #accountAPI {
+            background-color: $sectionBGColor;
+            width: 100%;
+            padding: $innerPadding;
+            margin-bottom: $outerPadding;
+            @include flexBox();
+            @include alignItems();
+            @include justifyContent();
+            font-family: $contentFont;
+            font-size: 18px;
+
+            input[name="apiInput"] {
+                width: 700px;
+            }
+
+            .descriptor {
+                font-weight: bold;
+                margin-right: 4px;
+            }
+
+            #ssOwned {
+                margin-right: $innerPadding;
+            }
+        }
+
+        #displayOptions {
+            background-color: $sectionBGColor;
+            width: 100%;
+            padding: $innerPadding;
+            margin-bottom: $outerPadding;
+            @include flexBox();
+            @include alignItems();
+            @include justifyContent();
+            font-family: $contentFont;
+            font-size: 18px;
+
+            input[name="avgResultInput"] {
+                width: 60px;
+                text-align: center;
+            }
+
+            input[name="breakpointInput"] {
+                width: 70px;
+                text-align: center;
+            }
+        }
+
+        #displayData {
+            background-color: $sectionBGColor;
+            width: 100%;
+
+            table {
+                width: 100%;
+                font-family: $contentFont;
+                font-size: 18px;
+
+                th {
+                    background-color: $tableHeaderBGColor	;
+                    color: $tableHeaderFontColor;
+                    padding: 5px;
+                    font-family: $contentFont;
+                }
+
+                td {
+                    height: 100px;
+                }
+
+                .gridRow {
+                    @include flexBox();
+                    @include alignItems();
+                }
+
+                .centerRow {
+                    text-align: center;
+                }
+                
+                .avgReturnRow {
+                    text-align: center;
+                    font-size: 28px;
+                }
+
+                .craftingMaterialsRow {
+                    p {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 2px;
+
+                        .materialImage {
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 6px;
+                        }
+                    }
+
+                    p:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .paddedCell {
+                    padding-left: $innerPadding;
+                }
+
+                .profitable {
+                    border: 2px solid $profitBorderColor;
+                    background-color: $profitBGColor;
+                }
+
+                .itemText {
+                    margin-left: 5px;
+                }
+
+                .divider {
+                    margin-left: 4px;
+                }
+
+                tr:nth-child(odd) {
+                    background-color: $tableAltColor;
+                }
+            }
+        } 
+    }
+
+    footer {
+        background-color: $footerBGColor;
+        width: 100%;
+        color: $footerFontColor;
+        text-align: center;
+        font-family: $headerFont;
+        margin-right: auto;
+        margin-left: auto;
+        padding: $outerPadding;
+        
+        h3 {
+            padding-bottom: $innerPadding;
+        }
+    }
+}
+
