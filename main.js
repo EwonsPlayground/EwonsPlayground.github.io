@@ -22,7 +22,7 @@
         "closeButton": true,
         "debug": false,
         "newestOnTop": false,
-        "progressBar": false,
+        "progressBar": true,
         "positionClass": "toast-bottom-right",
         "prkeyPressedDuplicates": false,
         "onclick": null,
