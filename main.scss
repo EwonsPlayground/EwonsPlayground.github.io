@@ -4,6 +4,7 @@ $innerPadding: 10px;
 $buttonAndFieldHeight: 32px;
 $headerFont: Georgia, 'Times New Roman', Times, serif;
 $contentFont: Calibri, Arial, sans-serif;
+$mainBoxShadow: 2px 2px 0px 0px rgba(138,138,138,1);
 
 // Colors
 $bannerColor: #e0261c;
@@ -188,7 +189,8 @@ body {
                     }
 
                     a:hover {
-                        font-weight: bold;
+                        //text-decoration: underline;
+                        border-bottom: 1px solid $linkColor;
                     }
                 }
 
@@ -235,6 +237,7 @@ body {
             @include justifyContent();
             font-family: $contentFont;
             font-size: 18px;
+            box-shadow: $mainBoxShadow;
 
             input[name="apiInput"] {
                 width: 700px;
@@ -260,6 +263,7 @@ body {
             @include justifyContent();
             font-family: $contentFont;
             font-size: 18px;
+            box-shadow: $mainBoxShadow;
 
             input[name="avgResultInput"] {
                 width: 60px;
@@ -280,6 +284,7 @@ body {
                 width: 100%;
                 font-family: $contentFont;
                 font-size: 18px;
+                box-shadow: $mainBoxShadow;
 
                 th {
                     background-color: $tableHeaderBGColor;

@@ -173,7 +173,7 @@ body header nav ul li a:visited {
 }
 
 body header nav ul li a:hover {
-  font-weight: bold;
+  border-bottom: 1px solid snow;
 }
 
 body header nav ul li:last-of-type {
@@ -222,6 +222,8 @@ body main #accountAPI {
           justify-content: space-between;
   font-family: Calibri, Arial, sans-serif;
   font-size: 18px;
+  -webkit-box-shadow: 2px 2px 0px 0px #8a8a8a;
+          box-shadow: 2px 2px 0px 0px #8a8a8a;
 }
 
 body main #accountAPI input[name="apiInput"] {
@@ -253,6 +255,8 @@ body main #displayOptions {
           justify-content: space-between;
   font-family: Calibri, Arial, sans-serif;
   font-size: 18px;
+  -webkit-box-shadow: 2px 2px 0px 0px #8a8a8a;
+          box-shadow: 2px 2px 0px 0px #8a8a8a;
 }
 
 body main #displayOptions input[name="avgResultInput"] {
@@ -274,6 +278,8 @@ body main #displayData table {
   width: 100%;
   font-family: Calibri, Arial, sans-serif;
   font-size: 18px;
+  -webkit-box-shadow: 2px 2px 0px 0px #8a8a8a;
+          box-shadow: 2px 2px 0px 0px #8a8a8a;
 }
 
 body main #displayData table th {
