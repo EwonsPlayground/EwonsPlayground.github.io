@@ -50,6 +50,7 @@ body {
 	margin: 0 auto;
     width: 100%;
     background-color: $bodyBGColor;
+    background-image: url("Images/bgTile.jpg");
     
     #dataChartOverlay {
         position: fixed; /* Sit on top of the page content */

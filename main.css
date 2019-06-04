@@ -10,6 +10,7 @@ body {
   margin: 0 auto;
   width: 100%;
   background-color: #dbd0c0;
+  background-image: url("Images/bgTile.jpg");
   /* Header Styles */
   /* Main Styles */
 }
