@@ -147,6 +147,7 @@ body {
         margin-left: auto;
         padding-left: $outerPadding;
         padding-right: $outerPadding;
+        border-bottom: 3px solid #bd1f17;
         @include flexBox();
         @include alignItems();
         @include justifyContent();
@@ -281,7 +282,8 @@ body {
                 font-size: 18px;
 
                 th {
-                    background-color: $tableHeaderBGColor	;
+                    background-color: $tableHeaderBGColor;
+                    background-image: repeating-linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
                     color: $tableHeaderFontColor;
                     padding: 5px;
                     font-family: $contentFont;
