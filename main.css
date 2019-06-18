@@ -362,6 +362,7 @@ body footer {
   margin-right: auto;
   margin-left: auto;
   padding: 15px;
+  border-top: 3px solid #736363;
 }
 
 body footer h3 {
