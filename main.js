@@ -17,25 +17,6 @@
     const accountUrl = "https://api.guildwars2.com/v2/account/wallet?access_token=";
     const enterKey = 13;
 
-    // Check Local Storage and Set Fields
-    //TODO: Store local storage names in variables
-    // API Key
-    if(localStorage.getItem("api_key")) {
-        document.getElementById("apiInput").value = localStorage.getItem("api_key");
-    }
-
-    // T6 Average Retrun
-    if(localStorage.getItem("t6avg")) {
-        document.getElementById("avgResultInput").value = localStorage.getItem("t6avg");
-        avgReturn = localStorage.getItem("t6avg");
-    }
-
-    // Ideal Profit
-    if(localStorage.getItem("ideal_profit")) {
-        document.getElementById("breakpointInput").value = localStorage.getItem("ideal_profit");
-        idealProfit = localStorage.getItem("ideal_profit");
-    }
-
     // Toastr Options
     toastr.options = {
         "closeButton": true,
@@ -53,7 +34,25 @@
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-      }
+    }
+
+    // Check Local Storage and Set Fields
+    // API Key
+    if(localStorage.getItem("api_key")) {
+        document.getElementById("apiInput").value = localStorage.getItem("api_key");
+    }
+
+    // T6 Average Retrun
+    if(localStorage.getItem("t6avg")) {
+        document.getElementById("avgResultInput").value = localStorage.getItem("t6avg");
+        avgReturn = localStorage.getItem("t6avg");
+    }
+
+    // Ideal Profit
+    if(localStorage.getItem("ideal_profit")) {
+        document.getElementById("breakpointInput").value = localStorage.getItem("ideal_profit");
+        idealProfit = localStorage.getItem("ideal_profit");
+    }
 
     // Item Name and IDs
     const itemIDArray = [{name: "Ancient Bone", id: 24358, materialID: 24341},
@@ -125,16 +124,18 @@
         // Grab average return
         avgReturn = parseFloat(document.getElementById("avgResultInput").value);
 
-        // Store average return in local storage
-        localStorage.setItem("t6avg", avgReturn);
-
         if (!isNaN(avgReturn)) {
+            // Store average return in local storage
+            localStorage.setItem("t6avg", avgReturn);
+
             calculateProfit();
             populateTable();
             populateDataChart();
             if (document.getElementById("apiInput").value != ""){
                 addAccountAPIDetails();
             }
+        } else {
+            avgReturn = baseReturn;
         }
     }
 
@@ -156,15 +157,17 @@
         // Grab Ideal Profit
         idealProfit = parseFloat(document.getElementById("breakpointInput").value);
 
-        // Store ideal profit in local storage
-        localStorage.setItem("ideal_profit", idealProfit);
-
         if (!isNaN(idealProfit)) {
+            // Store ideal profit in local storage
+            localStorage.setItem("ideal_profit", idealProfit);
+
             populateTable();
             populateDataChart();
             if (document.getElementById("apiInput").value != ""){
                 addAccountAPIDetails();
             }
+        } else {
+            idealProfit = baseProfit;
         }
     }
 
@@ -487,6 +490,9 @@
                                         calculateProfit();
                                         populateTable();
                                         populateDataChart();
+                                        if (document.getElementById("apiInput").value != ""){
+                                            addAccountAPIDetails();
+                                        }
 
                                         // Check for a market crash
                                         marketCrash = craftingData.every(item => item.avgProfit < 0);
