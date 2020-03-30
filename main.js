@@ -17,6 +17,25 @@
     const accountUrl = "https://api.guildwars2.com/v2/account/wallet?access_token=";
     const enterKey = 13;
 
+    // Check Local Storage and Set Fields
+    //TODO: Store local storage names in variables
+    // API Key
+    if(localStorage.getItem("api_key")) {
+        document.getElementById("apiInput").value = localStorage.getItem("api_key");
+    }
+
+    // T6 Average Retrun
+    if(localStorage.getItem("t6avg")) {
+        document.getElementById("avgResultInput").value = localStorage.getItem("t6avg");
+        avgReturn = localStorage.getItem("t6avg");
+    }
+
+    // Ideal Profit
+    if(localStorage.getItem("ideal_profit")) {
+        document.getElementById("breakpointInput").value = localStorage.getItem("ideal_profit");
+        idealProfit = localStorage.getItem("ideal_profit");
+    }
+
     // Toastr Options
     toastr.options = {
         "closeButton": true,
@@ -78,7 +97,10 @@
         let spiritShardOwned;
         let ssProfit;
 
-        //TODO: Added try catch for invalid api keys?
+        // Store API Key in local storage
+        localStorage.setItem("api_key", apiKey);
+
+        //TODO: Add try catch for invalid api keys?
         fetch(`${accountUrl}${apiKey}`)
             .then(function(response) {return response.json() })
             .then(function(json) {
@@ -100,7 +122,12 @@
 
     // Function to set the custom avg result, and update the calculations
     const setAVGReturn = function() {
+        // Grab average return
         avgReturn = parseFloat(document.getElementById("avgResultInput").value);
+
+        // Store average return in local storage
+        localStorage.setItem("t6avg", avgReturn);
+
         if (!isNaN(avgReturn)) {
             calculateProfit();
             populateTable();
@@ -111,8 +138,10 @@
         }
     }
 
+    // Function to reset the average return
     const resetAVGReturn = function() {
         avgReturn = baseReturn;
+        localStorage.removeItem("t6avg");
         document.getElementById("avgResultInput").value = "";
         calculateProfit();
         populateTable();
@@ -124,7 +153,12 @@
 
     // Function to set the custom avg result, and update the calculations
     const setBreakPoint = function() {
+        // Grab Ideal Profit
         idealProfit = parseFloat(document.getElementById("breakpointInput").value);
+
+        // Store ideal profit in local storage
+        localStorage.setItem("ideal_profit", idealProfit);
+
         if (!isNaN(idealProfit)) {
             populateTable();
             populateDataChart();
@@ -134,8 +168,10 @@
         }
     }
 
+    // Function to reset the profit break point
     const resetBreakPoint = function() {
         idealProfit = baseProfit;
+        localStorage.removeItem("ideal_profit");
         document.getElementById("breakpointInput").value = "";
         populateTable();
         populateDataChart();
