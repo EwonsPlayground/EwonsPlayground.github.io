@@ -45,13 +45,13 @@
     // T6 Average Retrun
     if(localStorage.getItem("t6avg")) {
         document.getElementById("avgResultInput").value = localStorage.getItem("t6avg");
-        avgReturn = localStorage.getItem("t6avg");
+        avgReturn = parseFloat(localStorage.getItem("t6avg"));
     }
 
     // Ideal Profit
     if(localStorage.getItem("ideal_profit")) {
         document.getElementById("breakpointInput").value = localStorage.getItem("ideal_profit");
-        idealProfit = localStorage.getItem("ideal_profit");
+        idealProfit = parseFloat(localStorage.getItem("ideal_profit"));
     }
 
     // Item Name and IDs
@@ -297,7 +297,7 @@
             targetCell.innerHTML = `<img src="${craftingData[i].icon}" />
                                     <div class="itemText">
                                     <p><strong>${craftingData[i].name}</strong></p>
-                                    <p class="coinContainer"><strong>Sell: </strong>${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}</p>
+                                    <p class="coinContainer"><strong>Sell</strong>: ${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}</p>
                                     </div>`;
         }
 
@@ -323,11 +323,13 @@
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`cell_r${i}c3`);
             targetCell.setAttribute("class", "paddedCell");
-            targetCell.innerHTML = `<p class="coinContainer"><strong>Cost: </strong>${craftingData[i].craftingCost}${silverImage}</p>
-                                    <p class="coinContainer"><strong>Profit: </strong>${craftingData[i].avgProfit}${silverImage}</p>`;
+            targetCell.innerHTML = `<p class="coinContainer"><strong>Cost</strong>: ${craftingData[i].craftingCost}${silverImage}</p>
+                                    <p class="coinContainer"><strong>Profit</strong>: ${craftingData[i].avgProfit}${silverImage}</p>`;
 
             if (craftingData[i].avgProfit > idealProfit) {
                 targetCell.classList.add("profitable");
+                console.log(typeof(craftingData[i].avgProfit));
+                console.log(typeof(idealProfit));
             }
         }
 
@@ -421,13 +423,13 @@
 
             const returnOnInvestment =  (avgProfit / craftingCost) * 100;
 
-            craftingData[i].craftingCost = craftingCost.toFixed(2);
-            craftingData[i].avgProfit = avgProfit.toFixed(2);
-            craftingData[i].profitPerSS = profitPerSS.toFixed(2);
-            craftingData[i].returnOnInvestment = returnOnInvestment.toFixed(2);
+            craftingData[i].craftingCost = parseFloat(craftingCost.toFixed(2));
+            craftingData[i].avgProfit = parseFloat(avgProfit.toFixed(2));
+            craftingData[i].profitPerSS = parseFloat(profitPerSS.toFixed(2));
+            craftingData[i].returnOnInvestment = parseFloat(returnOnInvestment.toFixed(2));
 
             if (profitPerSS > highestProfit) {
-                highestProfit = profitPerSS.toFixed(2);
+                highestProfit = parseFloat(profitPerSS.toFixed(2));
             }
         }
     }
