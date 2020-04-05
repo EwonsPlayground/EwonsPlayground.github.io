@@ -73,6 +73,7 @@
     const spiritShardId = 23;
     const dustId = 24277;
 
+    // Create Arrays for item data
     const t6ItemDataUrls = itemIDArray.map(item => {
         return `${dataUrl}${item.id}`
     })
@@ -243,6 +244,7 @@
         container.appendChild(tbl);
       }
 
+    // Function to create the data chart overlay
     const generateDataChart = function() {
         // get the reference for the body
         const container = document.getElementById("dataChart");
@@ -398,7 +400,7 @@
         }
     }
 
-    // Function to Calculate Proftis for each item
+    // Function to Calculate Profits for each item
     const calculateProfit = function() {
         highestProfit = -1000;
 
