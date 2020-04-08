@@ -197,6 +197,51 @@ body {
                 li:last-of-type { 
                     border-right: none;
                 }
+
+                .submenuTitle {
+
+                    a:hover {
+                        border-bottom: none;
+                    }
+
+                }
+
+                .submenu {
+                    display: none;
+                    position: absolute;
+                    top: 32px;
+                    padding: 4px 0;
+                    list-style-type: none;
+                    background-color: $bannerColor;
+                    border-bottom: 3px solid #bd1f17;
+                    border-right: 3px solid #bd1f17;
+
+                    li {
+                        border-right: none;
+
+                        a {
+                            padding: 5px;
+                            text-align: left;
+                            display: block;
+                            width: 100%;
+                            color: $inactiveLinkColor;
+                        }
+
+                        a:visited {
+                            color: $inactiveLinkColor;
+                        }
+
+                        a:hover {
+                            color: $linkColor;
+                        }
+                    }
+                }
+
+                .submenuTitle:hover .submenu, .submenu:hover {
+                    display: block;
+                    /* Ensuring the menus are above the image */
+                    z-index: 444;
+                }
             }
         }
     }

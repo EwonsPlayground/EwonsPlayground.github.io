@@ -180,6 +180,47 @@ body header nav ul li:last-of-type {
   border-right: none;
 }
 
+body header nav ul .submenuTitle a:hover {
+  border-bottom: none;
+}
+
+body header nav ul .submenu {
+  display: none;
+  position: absolute;
+  top: 32px;
+  padding: 4px 0;
+  list-style-type: none;
+  background-color: #e0261c;
+  border-bottom: 3px solid #bd1f17;
+  border-right: 3px solid #bd1f17;
+}
+
+body header nav ul .submenu li {
+  border-right: none;
+}
+
+body header nav ul .submenu li a {
+  padding: 5px;
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: #ef908b;
+}
+
+body header nav ul .submenu li a:visited {
+  color: #ef908b;
+}
+
+body header nav ul .submenu li a:hover {
+  color: snow;
+}
+
+body header nav ul .submenuTitle:hover .submenu, body header nav ul .submenu:hover {
+  display: block;
+  /* Ensuring the menus are above the image */
+  z-index: 444;
+}
+
 body main {
   width: 100%;
   padding: 15px;
