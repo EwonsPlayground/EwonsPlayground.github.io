@@ -264,7 +264,7 @@ body main #displayOptions input[name="avgResultInput"] {
   text-align: center;
 }
 
-body main #displayOptions input[name="breakpointInput"] {
+body main #displayOptions input[name="breakpointInput"], body main #displayOptions input[name="ssbreakpointInput"] {
   width: 70px;
   text-align: center;
 }
@@ -362,7 +362,7 @@ body footer {
   margin-right: auto;
   margin-left: auto;
   padding: 15px;
-  border-top: 3px solid #736363;
+  border-top: 3px solid #6f5c5c;
 }
 
 body footer h3 {

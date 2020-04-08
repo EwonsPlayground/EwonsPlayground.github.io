@@ -4,8 +4,10 @@
     const chartHeadings = ["Dust Material", "T5 Material", "T6 Material", "T6 Price", "T5 Price", "Dust Price", "Cost", "T6 Sell"];
     const baseReturn = 6.91;
     const baseProfit = 20.00;
+    const ssBaseProfit = 40.00;
     let avgReturn = baseReturn;
     let idealProfit = baseProfit;
+    let idealSSProfit =  ssBaseProfit;
     let highestProfit = -1000;
     const commaRegex = /\B(?=(\d{3})+(?!\d))/g; // Regex to add , to thousands place
     let refresh = false;
@@ -48,10 +50,16 @@
         avgReturn = parseFloat(localStorage.getItem("t6avg"));
     }
 
-    // Ideal Profit
+    // Ideal Profit per Flip
     if(localStorage.getItem("ideal_profit")) {
         document.getElementById("breakpointInput").value = localStorage.getItem("ideal_profit");
         idealProfit = parseFloat(localStorage.getItem("ideal_profit"));
+    }
+
+    // Ideal Profit per Spirit Shard
+    if(localStorage.getItem("ideal_ss_profit")) {
+        document.getElementById("ssbreakpointInput").value = localStorage.getItem("ideal_ss_profit");
+        idealSSProfit = parseFloat(localStorage.getItem("ideal_ss_profit"));
     }
 
     // Item Name and IDs
@@ -153,7 +161,7 @@
         }
     }
 
-    // Function to set the custom avg result, and update the calculations
+    // Function to set the profit break point
     const setBreakPoint = function() {
         // Grab Ideal Profit
         idealProfit = parseFloat(document.getElementById("breakpointInput").value);
@@ -177,6 +185,37 @@
         idealProfit = baseProfit;
         localStorage.removeItem("ideal_profit");
         document.getElementById("breakpointInput").value = "";
+        populateTable();
+        populateDataChart();
+        if (document.getElementById("apiInput").value != ""){
+            addAccountAPIDetails();
+        }
+    }
+
+    // Function to set the spirit shard profit break point
+    const setSSBreakPoint = function() {
+        // Grab Ideal Profit
+        idealSSProfit = parseFloat(document.getElementById("ssbreakpointInput").value);
+
+        if (!isNaN(idealSSProfit)) {
+            // Store ideal profit in local storage
+            localStorage.setItem("ideal_ss_profit", idealSSProfit);
+
+            populateTable();
+            populateDataChart();
+            if (document.getElementById("apiInput").value != ""){
+                addAccountAPIDetails();
+            }
+        } else {
+            idealSSProfit = ssBaseProfit;
+        }
+    }
+
+    // Function to reset the spirit shard profit break point
+    const resetSSBreakPoint = function() {
+        idealSSProfit = ssBaseProfit;
+        localStorage.removeItem("ideal_ss_profit");
+        document.getElementById("ssbreakpointInput").value = "";
         populateTable();
         populateDataChart();
         if (document.getElementById("apiInput").value != ""){
@@ -321,7 +360,7 @@
         }
 
 
-        // Populate Total Cost
+        // Populate Total Cost and Profit
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`cell_r${i}c3`);
             targetCell.setAttribute("class", "paddedCell");
@@ -330,17 +369,19 @@
 
             if (craftingData[i].avgProfit > idealProfit) {
                 targetCell.classList.add("profitable");
-                console.log(typeof(craftingData[i].avgProfit));
-                console.log(typeof(idealProfit));
             }
         }
 
-        // Populate Profit per Spirit Shard
+        // Populate Profit per Spirit Shard and Return on Investment
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`cell_r${i}c4`);
             targetCell.setAttribute("class", "paddedCell");
             targetCell.innerHTML = `<p class="coinContainer">${craftingData[i].profitPerSS}${silverImage} / Spirit Shard</p>
                                     <p><strong>ROI: </strong>${craftingData[i].returnOnInvestment}%</p>`;
+
+            if (craftingData[i].profitPerSS > idealSSProfit) {
+                targetCell.classList.add("profitable");
+            }
         }
     }
 
@@ -546,6 +587,12 @@
         }
     }
 
+    const setSSBreakPointEnter = function(keyPressed){
+        if (keyPressed.keyCode == enterKey || keyPressed.which == enterKey){
+            setSSBreakPoint();
+        }
+    }
+
     // Display a data chart overlay for copy and paste ability
     const openChart = function() {
         document.getElementById("dataChartOverlay").style.display = "block";
@@ -570,11 +617,14 @@
     document.getElementById("resetavgResult").addEventListener("click", resetAVGReturn);
     document.getElementById("setBreakpoint").addEventListener("click", setBreakPoint);
     document.getElementById("resetBreakpoint").addEventListener("click", resetBreakPoint);
+    document.getElementById("setssBreakpoint").addEventListener("click", setSSBreakPoint);
+    document.getElementById("resetssBreakpoint").addEventListener("click", resetSSBreakPoint);
     document.getElementById("setRefresh").addEventListener("change", refreshInput);
 
     document.getElementById("apiInput").addEventListener("keypress", addAccountAPIDetailsEnter);
     document.getElementById("avgResultInput").addEventListener("keypress", setAVGReturnEnter);
     document.getElementById("breakpointInput").addEventListener("keypress", setBreakPointEnter);
+    document.getElementById("ssbreakpointInput").addEventListener("keypress", setSSBreakPointEnter);
 
     document.getElementById("displayDataChart").addEventListener("click", openChart)
     document.getElementById("dataChartOverlay").addEventListener("click", closeChart);
