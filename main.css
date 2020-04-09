@@ -300,12 +300,7 @@ body main #displayOptions {
           box-shadow: 2px 2px 0px 0px #8a8a8a;
 }
 
-body main #displayOptions input[name="avgResultInput"] {
-  width: 60px;
-  text-align: center;
-}
-
-body main #displayOptions input[name="breakpointInput"], body main #displayOptions input[name="ssbreakpointInput"] {
+body main #displayOptions input[name="avgResultInput"], body main #displayOptions input[name="breakpointInput"], body main #displayOptions input[name="ssbreakpointInput"] {
   width: 70px;
   text-align: center;
 }
