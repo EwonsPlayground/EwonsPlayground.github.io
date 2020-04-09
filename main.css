@@ -276,7 +276,7 @@ body main #accountAPI .descriptor {
   margin-right: 4px;
 }
 
-body main #accountAPI #ssOwned {
+body main #accountAPI #ssOwned, body main #accountAPI #ssAvgProfit {
   margin-right: 10px;
 }
 

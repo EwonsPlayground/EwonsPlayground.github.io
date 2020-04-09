@@ -9,6 +9,7 @@
     let idealProfit = baseProfit;
     let idealSSProfit =  ssBaseProfit;
     let highestProfit = -1000;
+    let profitableAmounts = [];
     const commaRegex = /\B(?=(\d{3})+(?!\d))/g; // Regex to add , to thousands place
     let refresh = false;
     const refreshRate = 300000; // 5 Minutes is 300,000ms
@@ -118,6 +119,7 @@
         const apiKey = document.getElementById("apiInput").value;
         let spiritShardOwned;
         let ssProfit;
+        let ssAvgProfit;
 
         // Store API Key in local storage
         localStorage.setItem("api_key", apiKey);
@@ -131,9 +133,16 @@
                     spiritShardOwned = ssFilter.value;
 
                     ssProfit = spiritShardOwned * highestProfit / 100;
+                    ssAvgProfit = spiritShardOwned * ( profitableAmounts.reduce((a,b) => a + b, 0) / profitableAmounts.length ) / 100;
 
-                    document.getElementById("ssOwned").innerHTML = spiritShardOwned.toString().replace(commaRegex, ",");
+                    document.getElementById("ssOwned").innerHTML = spiritShardOwned.toString().replace(commaRegex, ",") + spiritShardImage;
+                    document.getElementById("ssAvgProfit").innerHTML = "N/A";
+                    if (!isNaN(ssAvgProfit)) {
+                        document.getElementById("ssAvgProfit").innerHTML = ssAvgProfit.toFixed(2).replace(commaRegex, ",") + goldImage;
+                    }
                     document.getElementById("ssProfit").innerHTML = ssProfit.toFixed(2).replace(commaRegex, ",") + goldImage;
+
+                    console.log("please")
                 } else {
                     alert("Invalid API Key");
                 }
@@ -184,6 +193,7 @@
             // Store ideal profit in local storage
             localStorage.setItem("ideal_profit", idealProfit);
 
+            calculateProfit();
             populateTable();
             populateDataChart();
             if (document.getElementById("apiInput").value != ""){
@@ -199,6 +209,8 @@
         idealProfit = baseProfit;
         localStorage.removeItem("ideal_profit");
         document.getElementById("breakpointInput").value = "";
+
+        calculateProfit();
         populateTable();
         populateDataChart();
         if (document.getElementById("apiInput").value != ""){
@@ -215,6 +227,7 @@
             // Store ideal profit in local storage
             localStorage.setItem("ideal_ss_profit", idealSSProfit);
 
+            calculateProfit();
             populateTable();
             populateDataChart();
             if (document.getElementById("apiInput").value != ""){
@@ -230,6 +243,8 @@
         idealSSProfit = ssBaseProfit;
         localStorage.removeItem("ideal_ss_profit");
         document.getElementById("ssbreakpointInput").value = "";
+
+        calculateProfit();
         populateTable();
         populateDataChart();
         if (document.getElementById("apiInput").value != ""){
@@ -461,6 +476,7 @@
     // Function to Calculate Profits for each item
     const calculateProfit = function() {
         highestProfit = -1000;
+        profitableAmounts = [];
 
         for (var i = 0; i < craftingData.length; i++) {
             // Variables
@@ -491,6 +507,10 @@
 
             if (profitPerSS > highestProfit) {
                 highestProfit = parseFloat(profitPerSS.toFixed(2));
+            }
+
+            if (avgProfit > idealProfit && profitPerSS > idealSSProfit) {
+                profitableAmounts.push(profitPerSS);
             }
         }
     }
