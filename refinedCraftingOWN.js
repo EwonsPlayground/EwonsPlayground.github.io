@@ -1,8 +1,8 @@
 (function(){
     // Variables
     const tableHeadings = ["Item Result", "AVG Result", "Crafting Materials", "Total Cost / Profit", "Profit / Spirit Shard"];
-    const chartHeadings = ["Dust Material", "T5 Material", "T6 Material", "T6 Price", "T5 Price", "Dust Price", "Cost", "T6 Sell"];
-    const baseReturn = 6.91;
+    const chartHeadings = ["Dust Material", "Component", "Material", "M. Price", "C. Price", "Dust Price", "Cost", "M. Sell"];
+    const baseReturn = 86.5;
     const baseProfit = 20.00;
     const ssBaseProfit = 40.00;
     let avgReturn = baseReturn;
@@ -46,9 +46,9 @@
     }
 
     // T6 Average Retrun
-    if(localStorage.getItem("t6avg")) {
-        document.getElementById("avgResultInput").value = localStorage.getItem("t6avg");
-        avgReturn = parseFloat(localStorage.getItem("t6avg"));
+    if(localStorage.getItem("refinedavg")) {
+        document.getElementById("avgResultInput").value = localStorage.getItem("refinedavg");
+        avgReturn = parseFloat(localStorage.getItem("refinedavg"));
     }
 
     // Ideal Profit per Flip
@@ -64,13 +64,14 @@
     }
 
     // Item Name and IDs
-    const itemIDArray = [{name: "Ancient Bone", id: 24358, materialID: 24341},
-                         {name: "Armored Scale", id: 24289, materialID: 24288},
-                         {name: "Elaborate Totem", id: 24300, materialID: 24299},
-                         {name: "Powerful Venom Sac", id: 24283, materialID: 24282},
-                         {name: "Vial of Powerful Blood", id: 24295, materialID: 24294},
-                         {name: "Vicious Claw", id: 24351, materialID: 24350},
-                         {name: "Vicious Fang", id: 24357, materialID: 24356}];
+    const itemIDArray = [
+        {name: "Bolt of Wool", id: 19740, materialID: 19720, dustID: 24273, stoneAmount: 2},
+        {name: "Cured Rugged Leather Square", id: 19736, materialID: 19734, dustID: 24274, stoneAmount: 6},
+        {name: "Cured Thin Leather Square", id: 19733, materialID: 19738, dustID: 24273, stoneAmount: 2},
+        {name: "Iron Ingot", id: 19683, materialID: 19679, dustID: 24273, stoneAmount: 2},
+        {name: "Platinum Ingot", id: 19686, materialID: 19682, dustID: 24275, stoneAmount: 6},
+        {name: "Seasoned Wood Plank", id: 19714, materialID: 19713, dustID: 24274, stoneAmount: 4},
+    ];
 
     // Item Variables      
     let craftingData;
@@ -80,7 +81,6 @@
     const goldImage = '<img class="coinImage" title="gold" src="Images/Gold_Coin.png" />';
     const spiritShardImage = '<img class="coinImage" title="spirit shard" src="Images/Spirit_Shard.png" />';
     const spiritShardId = 23;
-    const dustId = 24277;
 
     // Create Arrays for item data
     const t6ItemDataUrls = itemIDArray.map(item => {
@@ -97,6 +97,21 @@
 
     const t5ListingUrls = itemIDArray.map(item => {
         return `${listingUrl}${item.materialID}`
+    })
+
+    // Create Arrays to get Dust Data
+    let dustIDs = itemIDArray.map(item => {
+        return `${item.dustID}`
+    })
+
+    dustIDs = [...new Set(dustIDs)]; // remove duplicates
+
+    const dustDataUrls = dustIDs.map(item => {
+        return `${dataUrl}${item}`
+    })
+    
+    const dustListingUrls = dustIDs.map(item => {
+        return `${listingUrl}${item}`
     })
 
     // Functions
@@ -127,6 +142,8 @@
                         document.getElementById("ssAvgProfit").innerHTML = ssAvgProfit.toFixed(2).replace(commaRegex, ",") + goldImage;
                     }
                     document.getElementById("ssProfit").innerHTML = ssProfit.toFixed(2).replace(commaRegex, ",") + goldImage;
+
+                    console.log("please")
                 } else {
                     alert("Invalid API Key");
                 }
@@ -142,7 +159,7 @@
 
         if (!isNaN(avgReturn)) {
             // Store average return in local storage
-            localStorage.setItem("t6avg", avgReturn);
+            localStorage.setItem("refinedavg", avgReturn);
 
             calculateProfit();
             populateTable();
@@ -158,9 +175,8 @@
     // Function to reset the average return
     const resetAVGReturn = function() {
         avgReturn = baseReturn;
-        localStorage.removeItem("t6avg");
+        localStorage.removeItem("refinedavg");
         document.getElementById("avgResultInput").value = "";
-
         calculateProfit();
         populateTable();
         populateDataChart();
@@ -365,12 +381,13 @@
 
         // Populate the Crafting Materials
         for (let i = 0; i < craftingData.length; i++) {
+            const dustIndex = dustData.findIndex(dust => dust.id === craftingData[i].dustID);
             const targetCell = document.getElementById(`cell_r${i}c2`);
             targetCell.setAttribute("class", "craftingMaterialsRow paddedCell");
-            targetCell.innerHTML = `<p><img class="materialImage" src="${craftingData[i].icon}" /><span class="coinContainer"> 1 ${craftingData[i].name} | <strong class="divider">Buy</strong>: ${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
-                                    <p><img class="materialImage" src="${dustData.icon}" /><span class="coinContainer"> 5 ${dustData.name} | <strong class="divider">Buy</strong>: ${dustData.listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
-                                    <p><img class="materialImage" src="${craftingData[i].t5Material.icon}" /><span class="coinContainer"> 50 ${craftingData[i].t5Material.name} | <strong class="divider">Buy</strong>: ${craftingData[i].t5Material.listings.sells[0].unit_price / 100}${silverImage}/ea.</span></p>
-                                    <p><img class="materialImage" src="${stoneImage}" /><span class="coinContainer"> 5 Philosopher's Stones | 0.5 ${spiritShardImage} / ea.</span></p>`;
+            targetCell.innerHTML = `<p><img class="materialImage" src="${craftingData[i].icon}" /><span class="coinContainer"> 1 ${craftingData[i].name} | <strong class="divider">Sell</strong>: ${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
+                                    <p><img class="materialImage" src="${dustData[dustIndex].icon}" /><span class="coinContainer"> 5 ${dustData[dustIndex].name} | <strong class="divider">Sell</strong>: ${dustData[dustIndex].listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
+                                    <p><img class="materialImage" src="${craftingData[i].t5Material.icon}" /><span class="coinContainer"> 250 ${craftingData[i].t5Material.name} | <strong class="divider">Sell</strong>: ${craftingData[i].t5Material.listings.sells[0].unit_price / 100}${silverImage}/ea.</span></p>
+                                    <p><img class="materialImage" src="${stoneImage}" /><span class="coinContainer"> ${craftingData[i].stoneAmount} Philosopher's Stones | ${craftingData[i].stoneAmount / 10} ${spiritShardImage} / ea.</span></p>`;
         }
 
 
@@ -404,8 +421,9 @@
     const populateDataChart = function() {
         // Populate Dust Material
         for (let i = 0; i < craftingData.length; i++) {
+            const dustIndex = dustData.findIndex(dust => dust.id === craftingData[i].dustID);
             const targetCell = document.getElementById(`chart_r${i}c0`);
-            targetCell.innerHTML = dustData.name;
+            targetCell.innerHTML = dustData[dustIndex].name;
         }
 
         // Populate T5 Material
@@ -428,19 +446,20 @@
         // Populate T6 Price
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`chart_r${i}c3`);
-            targetCell.innerHTML = craftingData[i].listings.sells[0].unit_price / 100;
+            targetCell.innerHTML = craftingData[i].listings.buys[0].unit_price / 100;
         }
 
         // Populate T5 Price
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`chart_r${i}c4`);
-            targetCell.innerHTML = craftingData[i].t5Material.listings.sells[0].unit_price / 100;
+            targetCell.innerHTML = craftingData[i].t5Material.listings.buys[0].unit_price / 100;
         }
 
         // Populate Dust Material
         for (let i = 0; i < craftingData.length; i++) {
+            const dustIndex = dustData.findIndex(dust => dust.id === craftingData[i].dustID);
             const targetCell = document.getElementById(`chart_r${i}c5`);
-            targetCell.innerHTML = dustData.listings.sells[0].unit_price / 100;
+            targetCell.innerHTML = dustData[dustIndex].listings.buys[0].unit_price / 100;
         }
 
         // Populate Cost
@@ -463,27 +482,28 @@
 
         for (var i = 0; i < craftingData.length; i++) {
             // Variables
-            const t6Price = craftingData[i].listings.sells[0].unit_price / 100;
-            const t6Needed = 1;
-            const t5Price = craftingData[i].t5Material.listings.sells[0].unit_price / 100;
-            const t5Needed = 50;
-            const dustPrice = dustData.listings.sells[0].unit_price / 100;
+            const itemPrice = craftingData[i].listings.sells[0].unit_price / 100;
+            const itemNeeded = 1;
+            const matPrice = craftingData[i].t5Material.listings.sells[0].unit_price / 100;
+            const matNeeded = 250;
+            const dustIndex = dustData.findIndex(dust => dust.id === craftingData[i].dustID);
+            const dustPrice = dustData[dustIndex].listings.sells[0].unit_price / 100;
             const dustNeeded = 5;
 
-            const t6SellPrice = craftingData[i].listings.sells[0].unit_price / 100;
+            const itemSellPrice = craftingData[i].listings.sells[0].unit_price / 100;
             const tpFeeMultilpier = 0.85;
             const avgOutput = avgReturn;
 
-            const spiritShardsUsed = 0.5;
+            const spiritShardsUsed = craftingData[i].stoneAmount / 10;
 
-            const craftingCost = ((t6Price * t6Needed) + (t5Price * t5Needed) + (dustPrice * dustNeeded)) * 0.85;
-            const avgProfit = (t6SellPrice * avgOutput * tpFeeMultilpier) - craftingCost;
+            const craftingCost = ((itemPrice * itemNeeded) + (matPrice * matNeeded) + (dustPrice * dustNeeded)) * tpFeeMultilpier;
+            const avgProfit = (itemSellPrice * avgOutput * tpFeeMultilpier) - craftingCost;
             const profitPerSS = avgProfit / spiritShardsUsed;
 
             const returnOnInvestment =  (avgProfit / craftingCost) * 100;
 
             craftingData[i].craftingCost = parseFloat(craftingCost.toFixed(2));
-            craftingData[i].avgSell = parseFloat((localStorage.getItem("t6avg") * t6SellPrice * 0.85).toFixed(2));
+            craftingData[i].avgSell = parseFloat((avgOutput * itemSellPrice * 0.85).toFixed(2));
             craftingData[i].avgProfit = parseFloat(avgProfit.toFixed(2));
             craftingData[i].profitPerSS = parseFloat(profitPerSS.toFixed(2));
             craftingData[i].returnOnInvestment = parseFloat(returnOnInvestment.toFixed(2));
@@ -505,6 +525,12 @@
                 .then(response => response.json())
         }))
         .then(t6ItemData => {
+            // Add the Dust and Philosopher's Stone Amounts
+            for(let i = 0; i < t6ItemData.length; i++) {
+                t6ItemData[i].dustID = itemIDArray[i].dustID;
+                t6ItemData[i].stoneAmount = itemIDArray[i].stoneAmount;
+            }
+
             Promise.all(t6ListingUrls.map(url => {
                 return fetch(url)
                     .then(response => response.json())
@@ -535,53 +561,54 @@
                             t6ItemData[i].t5Material.listings = t5ListingData[i];
                         }
 
-                    // New method of doing multiple fetch calls
-                    //     return fetch(`${dataUrl}${dustId}`);
-                    // )
-                    // .then(function(response){return response.json();})
-                    // .then(function(json))
-                        
-                        fetch(`${dataUrl}${dustId}`)
-                            .then(function(response){return response.json();})
-                            .then(function(dustItemJson){
-                                dustData = dustItemJson;
+                        Promise.all(dustDataUrls.map(url => {
+                            return fetch(url)
+                                .then(response => response.json())
+                        }))
+                        .then(dustItemData => {
+                            Promise.all(dustListingUrls.map(url => {
+                                return fetch(url)
+                                    .then(response => response.json())
+                            }))
+                            .then(dustListingData => {
+                                //append images to respective listings
+                                for (let i = 0; i < dustItemData.length; i++) {
+                                    dustItemData[i].listings = dustListingData[i];
+                                }
 
-                                fetch(`${listingUrl}${dustId}`)
-                                    .then(function(response) {return response.json() })
-                                    .then(function(dustListingJson) {
-                                        dustData.listings = dustListingJson;
+                                // Now the functions to populate the page can run
+                                craftingData = t6ItemData;
+                                dustData = dustItemData;
 
-                                        // Now the functions to populate the page can run
-                                        craftingData = t6ItemData;
-                                        calculateProfit();
-                                        populateTable();
-                                        populateDataChart();
-                                        if (document.getElementById("apiInput").value != ""){
-                                            addAccountAPIDetails();
-                                        }
+                                calculateProfit();
+                                populateTable();
+                                populateDataChart();
+                                if (document.getElementById("apiInput").value != ""){
+                                    addAccountAPIDetails();
+                                }
 
-                                        // Check for a market crash
-                                        marketCrash = craftingData.every(item => item.avgProfit < 0);
+                                // Check for a market crash
+                                marketCrash = craftingData.every(item => item.avgProfit < 0);
 
-                                        if (marketCrash) {
-                                            toastr.warning("This market has crashed and is no longer profitable!!", "Warning:");
-                                        }
+                                if (marketCrash) {
+                                    toastr.warning("This market has crashed and is no longer profitable!!", "Warning:");
+                                }
 
-                                        // Refresh the data if requested by the user
-                                        if (refresh == true) {
-                                            // Toaster
-                                            profitableItems = craftingData.filter(item => item.avgProfit > idealProfit).length;
-                                            if (profitableItems == 1) {
-                                                toastr.success(`${profitableItems} item is profitable!`, 'Profit Found');
-                                            } else if (profitableItems > 1) {
-                                                toastr.success(`${profitableItems} items are profitable!`, 'Profit Found');
-                                            }
-                                            setTimeout(function(){
-                                                appStartup();
-                                            }, refreshRate);
-                                        }
-                                    })
+                                // Refresh the data if requested by the user
+                                if (refresh == true) {
+                                    // Toaster
+                                    profitableItems = craftingData.filter(item => item.avgProfit > idealProfit).length;
+                                    if (profitableItems == 1) {
+                                        toastr.success(`${profitableItems} item is profitable!`, 'Profit Found');
+                                    } else if (profitableItems > 1) {
+                                        toastr.success(`${profitableItems} items are profitable!`, 'Profit Found');
+                                    }
+                                    setTimeout(function(){
+                                        appStartup();
+                                    }, refreshRate);
+                                }
                             })
+                        })
 
                     })
                 })

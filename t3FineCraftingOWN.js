@@ -367,9 +367,9 @@
         for (let i = 0; i < craftingData.length; i++) {
             const targetCell = document.getElementById(`cell_r${i}c2`);
             targetCell.setAttribute("class", "craftingMaterialsRow paddedCell");
-            targetCell.innerHTML = `<p><img class="materialImage" src="${craftingData[i].icon}" /><span class="coinContainer"> 1 ${craftingData[i].name} | <strong class="divider">Buy</strong>: ${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
-                                    <p><img class="materialImage" src="${dustData.icon}" /><span class="coinContainer"> 5 ${dustData.name} | <strong class="divider">Buy</strong>: ${dustData.listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
-                                    <p><img class="materialImage" src="${craftingData[i].t5Material.icon}" /><span class="coinContainer"> 50 ${craftingData[i].t5Material.name} | <strong class="divider">Buy</strong>: ${craftingData[i].t5Material.listings.sells[0].unit_price / 100}${silverImage}/ea.</span></p>
+            targetCell.innerHTML = `<p><img class="materialImage" src="${craftingData[i].icon}" /><span class="coinContainer"> 1 ${craftingData[i].name} | <strong class="divider">Sell</strong>: ${craftingData[i].listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
+                                    <p><img class="materialImage" src="${dustData.icon}" /><span class="coinContainer"> 5 ${dustData.name} | <strong class="divider">Sell</strong>: ${dustData.listings.sells[0].unit_price / 100}${silverImage}/ ea.</span></p>
+                                    <p><img class="materialImage" src="${craftingData[i].t5Material.icon}" /><span class="coinContainer"> 50 ${craftingData[i].t5Material.name} | <strong class="divider">Sell</strong>: ${craftingData[i].t5Material.listings.sells[0].unit_price / 100}${silverImage}/ea.</span></p>
                                     <p><img class="materialImage" src="${stoneImage}" /><span class="coinContainer"> 2 Philosopher's Stones | 0.2 ${spiritShardImage} / ea.</span></p>`;
         }
 
@@ -483,7 +483,7 @@
             const returnOnInvestment =  (avgProfit / craftingCost) * 100;
 
             craftingData[i].craftingCost = parseFloat(craftingCost.toFixed(2));
-            craftingData[i].avgSell = parseFloat((localStorage.getItem("t6avg") * t6SellPrice * 0.85).toFixed(2));
+            craftingData[i].avgSell = parseFloat(avgOutput * t6SellPrice * 0.85).toFixed(2);
             craftingData[i].avgProfit = parseFloat(avgProfit.toFixed(2));
             craftingData[i].profitPerSS = parseFloat(profitPerSS.toFixed(2));
             craftingData[i].returnOnInvestment = parseFloat(returnOnInvestment.toFixed(2));
