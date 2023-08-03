@@ -1,0 +1,153 @@
+// Base Styling for Tables
+
+// Include Variables and Mixins for use
+@import '../assets/variables', '../assets/mixins';
+
+.table {
+	background: $white-snow;
+	border-collapse: collapse;
+	border-radius: 4px;
+	box-shadow: $mainBoxShadow;
+	width: 100%;
+
+	thead {
+		position: sticky;
+		top: -2px;
+		z-index: 1;
+
+		th {
+			background: $grey-dark;
+			background-image: linear-gradient(rgba($white,0.1),rgba($white,0));
+			border-right: 1px solid rgba($black,0);
+			color: $white-snow;
+			font-weight: normal;
+			padding: 7px 12px 8px;
+			position: relative;
+
+			&:after {
+				background: rgba($black,0.9);;
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				right: -1px;
+				bottom: 0;
+				width: 1px;
+			}
+
+			&:first-of-type {
+				border-top-left-radius: 4px;
+			}
+	
+			&:last-of-type {
+				border-right: none;
+				border-top-right-radius: 4px;
+
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid rgba($brown-main,0.3);
+	
+			&:nth-child(even) {
+				background: rgba($brown-main,0.04);
+			}
+	
+			&:last-of-type {
+				border-bottom: none;
+			}
+		}
+
+		&.with-header {
+			tr {
+				&:first-of-type {
+					border-bottom: none;
+				}
+
+				&:nth-child(odd) {
+					background: rgba($brown-main,0.04);
+				}
+
+				&:nth-child(even) {
+					background: unset;
+				}
+			}
+		}
+
+		th {
+			background: rgba($grey-dark,0.2);
+			border-bottom: 1px solid rgba($black,0.3);
+			font-weight: normal;
+			padding: 8px 12px;
+		}
+
+		td {
+			border-right: 1px solid rgba($brown-main,0.3);
+			padding: 8px 12px;
+	
+			&:last-of-type {
+				border-right: none;
+			}
+	
+			// p {
+			// 	text-align: center;	
+			// }
+		}
+	}
+
+	&__material-cell {
+		align-items: center;
+		display: flex;
+	}
+
+	&__material-cell-image {
+		border: 1px solid $black;
+		height: 26px;
+    margin-right: 6px;
+	}
+
+	&__value-cell {
+		font-size: 22px;
+		line-height: 100%;
+		text-align: center;
+	}
+
+	// Coin Value Styling
+	.coinContainer {
+		align-items: flex-end;
+    display: flex;
+    justify-content: center;
+		white-space: nowrap;
+	}
+	
+	.coinImage {
+		height: 16px;
+		filter: drop-shadow(0px 0px 0px $black) drop-shadow(0px 0px 0px $black);
+		margin: 0 6px 0 2px;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+
+	// Profity Styling
+	.profitableRow {
+		td {
+			background: rgba($profitBGColor,0.15);
+			font-weight: 600;
+		}
+
+		.profitable {
+			background: rgba($profitBGColor,0.5);
+		}
+	}
+
+	.notProfitable {
+		background: rgba($red-main,0.15);
+	}
+}

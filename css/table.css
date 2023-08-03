@@ -1,0 +1,123 @@
+.table {
+  background: snow;
+  border-collapse: collapse;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+          box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+  width: 100%;
+}
+.table thead {
+  position: sticky;
+  top: -2px;
+  z-index: 1;
+}
+.table thead th {
+  background: #43464D;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  color: snow;
+  font-weight: normal;
+  padding: 7px 12px 8px;
+  position: relative;
+}
+.table thead th:after {
+  background: rgba(0, 0, 0, 0.9);
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 1px;
+}
+.table thead th:first-of-type {
+  border-top-left-radius: 4px;
+}
+.table thead th:last-of-type {
+  border-right: none;
+  border-top-right-radius: 4px;
+}
+.table thead th:last-of-type:after {
+  display: none;
+}
+.table tbody tr {
+  border-bottom: 1px solid rgba(78, 65, 65, 0.3);
+}
+.table tbody tr:nth-child(even) {
+  background: rgba(78, 65, 65, 0.04);
+}
+.table tbody tr:last-of-type {
+  border-bottom: none;
+}
+.table tbody.with-header tr:first-of-type {
+  border-bottom: none;
+}
+.table tbody.with-header tr:nth-child(odd) {
+  background: rgba(78, 65, 65, 0.04);
+}
+.table tbody.with-header tr:nth-child(even) {
+  background: unset;
+}
+.table tbody th {
+  background: rgba(67, 70, 77, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-weight: normal;
+  padding: 8px 12px;
+}
+.table tbody td {
+  border-right: 1px solid rgba(78, 65, 65, 0.3);
+  padding: 8px 12px;
+}
+.table tbody td:last-of-type {
+  border-right: none;
+}
+.table__material-cell {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.table__material-cell-image {
+  border: 1px solid #000;
+  height: 26px;
+  margin-right: 6px;
+}
+.table__value-cell {
+  font-size: 22px;
+  line-height: 100%;
+  text-align: center;
+}
+.table .coinContainer {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  white-space: nowrap;
+}
+.table .coinImage {
+  height: 16px;
+  -webkit-filter: drop-shadow(0px 0px 0px #000) drop-shadow(0px 0px 0px #000);
+          filter: drop-shadow(0px 0px 0px #000) drop-shadow(0px 0px 0px #000);
+  margin: 0 6px 0 2px;
+}
+.table .coinImage:last-of-type {
+  margin-right: 0;
+}
+.table .profitableRow td {
+  background: rgba(136, 217, 105, 0.15);
+  font-weight: 600;
+}
+.table .profitableRow .profitable {
+  background: rgba(136, 217, 105, 0.5);
+}
+.table .notProfitable {
+  background: rgba(185, 25, 16, 0.15);
+}/*# sourceMappingURL=table.css.map */

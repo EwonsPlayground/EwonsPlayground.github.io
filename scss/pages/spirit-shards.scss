@@ -1,0 +1,286 @@
+// Include Variables and Mixins for use
+@import '../assets/variables', '../assets/mixins';
+
+// Styling for the Spirit Shards Page
+.spirit-shards {
+	&__header {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__title {
+		font-family: $font-serif-main;
+	}
+
+
+	// TODO: Refactor the styling
+	// OLD
+	#dataChartOverlay {
+		background-color: rgba(0,0,0,0.6);
+		display: none;
+		position: fixed;
+		inset: 0;
+		z-index: 2;
+
+		.closebtn {
+			position: absolute;
+			top: 20px;
+			right: 45px;
+			font-size: 60px;
+		  }
+
+		#closebtn {
+			padding: 8px;
+			text-decoration: none;
+			font-family: 'Lato', sans-serif;
+			color: snow;
+			display: block; /* Display block instead of inline */
+		}
+
+		#closebtn:hover, #closebtn:focus {
+			color: white;
+		}
+
+		#dataChart {
+			position: relative;
+			top: 25%;
+			margin: 0 auto;
+			max-width: 700px;
+			width: calc(100% - 48px);
+			background: snow;
+			border-radius: 4px;
+			margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+			padding: 8px;
+
+			p {
+				text-align: center;
+				margin-bottom: 8px;
+			}
+
+			table {
+				width: 100%;
+				border: 1px solid black;
+
+				th {
+					background-color: $tableHeaderBGColor	;
+					color: $tableHeaderFontColor;
+					padding: 5px;
+				}
+
+				td {
+					text-align: center;
+					padding: 6px;
+					border: 1px solid $black;
+				}
+
+				.profitable {
+					background-color: $profitBGColor;
+				}
+
+				tr:nth-child(odd) {
+					background-color: $tableAltColor;
+				}
+			}
+		}
+	}
+
+	// Shared Styles
+	.coinContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.singleValue {
+		font-size: 20px;
+		letter-spacing: $letter-spacing;
+	}
+
+	.coinImage {
+		margin-left: 3px;
+		margin-right: 4px;
+	}
+
+	input[type="text"] {
+		border: 1px solid $textFieldBorderColor;
+		height: $buttonAndFieldHeight;
+		padding: 6px;
+		font-family: $contentFont;
+		font-size: 16px;
+	}
+
+	.descriptor {
+		font-weight: bold;
+		margin-right: 4px;
+	}
+
+	#ssOwned, #ssAvgProfit {
+		margin-right: $innerPadding;
+	}
+
+	#displayOptions {
+		background-color: $sectionBGColor;
+		width: 100%;
+		padding: $innerPadding;
+		margin-bottom: $outerPadding;
+		@include flexBox();
+		@include alignItems();
+		@include justifyContent();
+		font-family: $contentFont;
+		font-size: 16px;
+		box-shadow: $mainBoxShadow;
+
+		input[name="avgResultInput"], input[name="ssbreakpointInput"] {
+			width: 70px;
+			text-align: center;
+		}
+	}
+
+	#displayData {
+		width: 100%;
+
+		table {
+			background: $white-snow;
+			border-radius: 4px;
+			overflow: hidden;
+			width: 100%;
+			font-family: $contentFont;
+			font-size: 16px;
+			box-shadow: $mainBoxShadow;
+			border-collapse: collapse;
+
+			// tbody {
+			// 	position: relative;
+
+			// 	@keyframes example {
+			// 		0%   {content: 'Loading API data';}
+			// 		33%  {content: 'Loading API data.';}
+			// 		66%  {content: 'Loading API data..';}
+			// 		100%  {content: 'Loading API data...';}
+			// 	}
+
+			// 	&:before {
+			// 		align-items: center;
+			// 		background: snow;
+			// 		content: 'Loading API data';
+			// 		display: flex;
+			// 		font-family: $font-sansserif-main;
+			// 		font-size: 24px;
+			// 		justify-content: center;
+			// 		letter-spacing: $letter-spacing;
+			// 		position: absolute;
+			// 		inset: 0;
+
+			// 		animation-name: example;
+			// 		animation-duration: 2s;
+			// 		animation-iteration-count: infinite;
+			// 	}
+			// }
+
+			th {
+				background: $tableHeaderBGColor;
+				background-image: linear-gradient(rgba($white,0.1),rgba($white,0));
+				border-right: 1px solid rgba($black,0.4);
+				color: $tableHeaderFontColor;
+				padding: 8px 12px;
+				font-family: $contentFont;
+				font-weight: normal;
+				letter-spacing: $letter-spacing;
+
+				&:last-of-type {
+					border-right: none;
+				}
+			}
+
+			tr {
+				border-bottom: 1px solid rgba($brown-main,0.2);
+
+				&:last-of-type {
+					border-bottom: none;
+				}
+			}
+
+			td {
+				border-right: 1px solid rgba($brown-main,0.2);
+				padding: 8px 12px;
+
+				&:last-of-type {
+					border-right: none;
+				}
+
+				p {
+					text-align: center;	
+				}
+			}
+
+			.gridRow {
+				@include flexBox();
+				@include alignItems();
+				
+				.coinContainer {
+					justify-content: flex-start;
+				}
+			}
+
+			.itemText {
+				p:nth-of-type(2) {
+					margin-top: 4px;
+				}
+			}
+
+			.centerRow {
+				text-align: center;
+			}
+			
+			.avgReturnRow {
+				text-align: center;
+				font-size: 28px;
+			}
+
+			.craftingMaterialsRow {
+				p {
+					display: flex;
+					align-items: center;
+					margin-bottom: 2px;
+
+					.materialImage {
+						border: 1px solid $black;
+						width: 20px;
+						height: 20px;
+						margin-right: 6px;
+					}
+				}
+
+				p:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+			
+			.profitableRow {
+				td {
+					background-color: rgba($profitBGColor,0.15);
+				}
+
+				.profitable {
+					background-color: rgba($profitBGColor,0.5);
+				}
+			}
+
+			.mainMaterialImage {
+				border: 1px solid $black;
+				height: 48px;
+				margin-right: 8px;
+				width: 48px;
+			}
+
+			.divider {
+				margin-left: 4px;
+			}
+
+			tr:nth-child(even) {
+				background: rgba($brown-main,0.04);
+			}
+		}
+	} 
+}

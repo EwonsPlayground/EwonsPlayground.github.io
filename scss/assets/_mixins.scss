@@ -1,0 +1,34 @@
+// Mixins
+@mixin flexBox {
+	display: -webkit-flex;
+	display: flex; 
+}
+
+@mixin alignItems {
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+@mixin justifyContent {
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+
+@mixin button-reset {
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	-webkit-appearance: none;
+}
+
+@mixin list-reset {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin transition($property: all, $time: 0.4s) {
+	transition: $property $time ease-in-out;
+}

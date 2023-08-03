@@ -1,51 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GW2 | Profit App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+	<title>GW2 | Profit App</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/main.js"></script>
 </head>
 <body>
-    <header>
-        <h1><a href="index.html"><strong>Guild Wars 2</strong> | Profit Calculator</a></h1>
-        <nav>
-            <ul>
-                <li class="submenuTitle"><a href="#">Spirit Shards (buy) &#9660;</a>
-                    <ul class="submenu">
-                        <li><a href="t6FineCrafting.html">T6 Fine Crafting Materials</a></li>
-                        <li><a href="t3FineCrafting.html">T3 Fine Crafting Materials</a></li>
-                        <li><a href="t2FineCrafting.html">T2 Fine Crafting Materials</a></li>
-                        <li><a href="refinedCrafting.html">Refined Crafting Materials</a></li>
-                    </ul>
-                </li>
-                <li class="submenuTitle"><a href="#">Spirit Shards (own) &#9660;</a>
-                    <ul class="submenu">
-                        <li><a href="t6FineCraftingOWN.html">T6 Fine Crafting Materials</a></li>
-                        <li><a href="t3FineCraftingOWN.html">T3 Fine Crafting Materials</a></li>
-                        <li><a href="t2FineCraftingOWN.html">T2 Fine Crafting Materials</a></li>
-                        <li><a href="refinedCraftingOWN.html">Refined Crafting Materials</a></li>
-                    </ul>
-                </li>
-                <li>Amalgamated Gemstones</li>
-            </ul>
-        </nav>
-    </header>
+	<header class="header">
+		<div class="header__inner">
+			<a href="/" class="header__site-link">
+				<h1 class="header__site-name"><strong>GW2</strong> | Profit Aid</h1>
+			</a>
 
-    <main>
-        Site under maintenance. Planning a rebuild, rewrite of teh code, and new features.
-    </main>
+			<nav class="header__navigation">
+				<ul class="header__menu-list">
+					<li class="header__menu-item header__menu-item--dropdown">
+						<button class="header__menu-button header__menu-button--dropdown" aria-label="open submenu">
+							Profit Tools
+						</button>
+						<ul class="header__submenu">
+							<li class="header__submenu-item">
+								<a class="header__submenu-link disabled" href="/">Amalgamated Gemstones</a>
+							</li>
+							<li class="header__submenu-item">
+								<a class="header__submenu-link disabled" href="/">Ancient Ambergris</a>
+							</li>
+							<li class="header__submenu-item">
+								<a class="header__submenu-link disabled" href="/">Festive Materials</a>
+							</li>
+							<li class="header__submenu-item">
+								<a class="header__submenu-link" href="refine-basic-materials.html">Refine Basic Materials</a>
+							</li>
+							<li class="header__submenu-item">
+								<a class="header__submenu-link" href="spirit-shards.html">Spirit Shards</a>
+							</li>
+						</ul>
+					</li>
+					<li class="header__menu-item">
+						<button class="header__menu-button js-open-modal-button" aria-label="open settings menu"
+										data-modal="js-site-settings-modal">
+							Site Settings
+						</button>
+					</li>
+				</ul>
+			</nav>
 
-    <footer>
-        <h3>Guild Wars 2 | Profit Calculator App created by: Ewon.5903</h3>
-        <p>
-        ©2010–2018 ArenaNet, LLC. All rights reserved. Guild Wars, Guild Wars 2, Heart of Thorns, Guild Wars 2: Path of Fire, 
-        ArenaNet, NCSOFT, the Interlocking NC Logo, and all associated logos and designs are trademarks or registered trademarks 
-        of NCSOFT Corporation. All other trademarks are the property of their respective owners.
-        </p>
-    </footer>
-    <script src="t6FineCraftingSELL.js"></script>
+			<div class="modal js-site-settings-modal">
+				<div class="modal__close-wrapper js-close-modal-wrapper"></div>
+				<section class="modal__inner">
+					<div class="modal__header">
+						<h3 class="modal__heading">Site Settings</h3>
+						<button class="modal__close-button js-close-modal-button">
+							<div class="modal__close-button-icon"></div>
+						</button>
+					</div>
+
+					<div class="modal__body">
+						<form class="form js-site-settings-form">
+							<div class="form__body">
+								<div class="form__field">
+									<label class="form__label" for="settings-api-key">Account API Key:</label>
+									<input class="form__input" type="text" id="settings-api-key"
+												placeholder="Enter your GW2 API key">
+								</div>
+							</div>
+							<div class="form__footer">
+								<p class="form__confirmation js-form-confirmation">Site settings saved.</p>
+								<button class="button" type="submit">Save</button>
+							</div>
+						</form> 
+					</div>
+				</section>
+			</div>
+		</div>
+	</header>
+
+	<main class="main">
+		<div class="banner">
+			<div class="banner__inner">
+				<div class="banner__header">
+					Site Under Maintenance!
+				</div>
+				<p class="banner__content">
+					Planning a full rebuild, rewrite of the code, and new features. Everything is currently subject to change and is a work in progess.
+				</p>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<div class="footer__inner">
+			<p class="footer__heading">Guild Wars 2 | Profit Calculator is created by: Ewon.5903</p>
+		</div>
+	</footer>
 </body>
 </html>

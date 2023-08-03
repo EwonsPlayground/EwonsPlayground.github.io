@@ -1,0 +1,24 @@
+.dailies__header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 24px;
+}
+.dailies__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.dailies__column {
+  background: snow;
+  border: 1px solid #000;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+}/*# sourceMappingURL=dailies.css.map */

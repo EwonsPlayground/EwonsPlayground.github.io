@@ -1,0 +1,120 @@
+// Styling for the base modal
+
+// Include Variables and Mixins for use
+@import '../assets/variables', '../assets/mixins';
+
+.modal {
+	$modal: &;
+	@include transition(opacity);
+	align-items: center;
+	background: rgba($black, 0.6);
+	display: none;
+	justify-content: center;
+	padding: 24px;
+	position: fixed;
+	inset: 0;
+	z-index: 4;
+
+	@keyframes fade-in {
+		0% 		{ opacity: 0; }
+		100% 	{ opacity: 1; }
+	}
+
+	@keyframes fade-out {
+		0% 		{ opacity: 1; }
+		100% 	{ opacity: 0; }
+	}
+
+	&.show {
+		animation: fade-in 0.35s forwards;
+		display: flex;
+	}
+
+	&.hide {
+		animation: fade-out 0.35s forwards;
+	}
+
+	&__close-wrapper {
+		display: block;
+		position: absolute;
+		inset: 0;
+	}
+
+	&__inner {
+		background: $white-snow;
+		border-radius: 4px;
+		filter: drop-shadow(0 2px 2px $brown-main);
+		overflow-y: auto;
+		max-height: calc(100vh - 48px);
+		max-width: 600px;
+		padding: 12px 16px 16px;
+		width: 100%;
+	}
+
+	&__header {
+		border-bottom: 1px solid rgba($brown-main,0.2);
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 14px;
+		padding-bottom: 10px;
+	}
+
+	&__heading {
+		color: $black;
+		font-family: $font-serif-main;
+		font-size: 20px;
+		letter-spacing: $letter-spacing;
+	}
+
+	&__close-button {
+		@include button-reset;
+		@include transition;
+		border-radius: 2px;
+		display: block;
+    height: 22px;
+		padding: 3px;
+    position: relative;
+    width: 22px;
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			inset: -6px;
+		}
+
+		&:hover, &:focus {
+			#{$modal}__close-button-icon {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__close-button-icon {
+		@include transition;
+		height: 100%;
+		opacity: 0.7;
+		pointer-events: none;
+    position: relative;
+    width: 100%;
+
+		&:before, &:after {
+			background: $black;
+			border-radius: 1px;
+			content: "";
+			display: block;
+			height: 2px;
+			position: absolute;
+			top: 50%;
+			width: 100%;
+		}
+
+		&:before {
+			transform: translateY(-50%) rotate(45deg);
+		}
+
+		&:after {
+			transform: translateY(-50%) rotate(-45deg);
+		}
+	}
+}

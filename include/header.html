@@ -1,0 +1,68 @@
+<header class="header">
+	<div class="header__inner">
+		<a href="/" class="header__site-link">
+			<h1 class="header__site-name"><strong>GW2</strong> | Profit Aid</h1>
+		</a>
+
+		<nav class="header__navigation">
+			<ul class="header__menu-list">
+				<li class="header__menu-item header__menu-item--dropdown">
+					<button class="header__menu-button header__menu-button--dropdown" aria-label="open submenu">
+						Profit Tools
+					</button>
+					<ul class="header__submenu">
+						<li class="header__submenu-item">
+							<a class="header__submenu-link disabled" href="/">Amalgamated Gemstones</a>
+						</li>
+						<li class="header__submenu-item">
+							<a class="header__submenu-link disabled" href="/">Ancient Ambergris</a>
+						</li>
+						<li class="header__submenu-item">
+							<a class="header__submenu-link disabled" href="/">Festive Materials</a>
+						</li>
+						<li class="header__submenu-item">
+							<a class="header__submenu-link" href="refine-basic-materials.html">Refine Basic Materials</a>
+						</li>
+						<li class="header__submenu-item">
+							<a class="header__submenu-link" href="spirit-shards.html">Spirit Shards</a>
+						</li>
+					</ul>
+				</li>
+				<li class="header__menu-item">
+					<button class="header__menu-button js-open-modal-button" aria-label="open settings menu"
+									data-modal="js-site-settings-modal">
+						Site Settings
+					</button>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="modal js-site-settings-modal">
+			<div class="modal__close-wrapper js-close-modal-wrapper"></div>
+			<section class="modal__inner">
+				<div class="modal__header">
+					<h3 class="modal__heading">Site Settings</h3>
+					<button class="modal__close-button js-close-modal-button">
+						<div class="modal__close-button-icon"></div>
+					</button>
+				</div>
+
+				<div class="modal__body">
+					<form class="form js-site-settings-form">
+						<div class="form__body">
+							<div class="form__field">
+								<label class="form__label" for="settings-api-key">Account API Key:</label>
+								<input class="form__input" type="text" id="settings-api-key"
+											placeholder="Enter your GW2 API key">
+							</div>
+						</div>
+						<div class="form__footer">
+							<p class="form__confirmation js-form-confirmation">Site settings saved.</p>
+							<button class="button" type="submit">Save</button>
+						</div>
+					</form> 
+				</div>
+			</section>
+		</div>
+	</div>
+</header>
