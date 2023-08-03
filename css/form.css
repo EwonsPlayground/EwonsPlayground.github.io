@@ -1,0 +1,40 @@
+.form__body {
+  margin-bottom: 16px;
+}
+.form__label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+  padding: 0 2px;
+  width: 100%;
+}
+.form__input {
+  background: #fff;
+  border: 1px solid rgba(78, 65, 65, 0.4);
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 15px;
+  padding: 6px 8px;
+  width: 100%;
+}
+.form__footer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.form__confirmation {
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+  font-size: 15px;
+  opacity: 0;
+  visibility: hidden;
+}
+.form__confirmation.show {
+  opacity: 1;
+  visibility: visible;
+}/*# sourceMappingURL=form.css.map */

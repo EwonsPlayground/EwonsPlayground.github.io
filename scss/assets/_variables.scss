@@ -1,0 +1,33 @@
+// Variables
+$buttonAndFieldHeight: 32px; // Remove
+$innerPadding: 10px;
+$letter-spacing: 0.02em;
+$mainBoxShadow: 2px 2px 0px 0px rgba(138,138,138,1);
+$outerPadding: 16px;
+
+// Colors
+$black: #000;
+$brown-main: #4e4141;
+$brown-light: #dbd0c0;
+$grey-dark: #43464D;
+$red-main: #b91910;
+$white: #fff;
+$white-snow: snow;
+
+$linkColor: $white-snow;
+$bodyBGColor: #dbd0c0;
+$sectionBGColor: $white-snow;
+$buttonColor: $red-main;
+$buttonHoverColor: #e04139;
+$textFieldBorderColor: black;
+$tableHeaderBGColor: #43464D;
+$tableHeaderFontColor: $white-snow;
+$tableAltColor: #eeeeee;
+$profitBorderColor: #46CB18;
+$profitBGColor: #88D969;
+
+// Fonts
+$font-serif-main: 'Domine', Georgia, serif;
+$font-sansserif-main: 'Open Sans', Arial, sans-serif;
+
+$contentFont: $font-sansserif-main;

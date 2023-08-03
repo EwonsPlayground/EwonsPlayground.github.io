@@ -1,0 +1,12 @@
+{
+  "name": "gw2-profit-calculator",
+  "version": "1.0.0",
+  "description": "Guild Wars 2 Profit Calculator",
+  "main": "Gruntfile.js",
+  "author": "Ewon.5903",
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-includes": "^1.1.0",
+    "grunt-string-replace": "^1.3.3"
+  }
+}

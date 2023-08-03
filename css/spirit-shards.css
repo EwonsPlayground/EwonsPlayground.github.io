@@ -1,0 +1,231 @@
+.spirit-shards__header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.spirit-shards__title {
+  font-family: "Domine", Georgia, serif;
+}
+.spirit-shards #dataChartOverlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+}
+.spirit-shards #dataChartOverlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+.spirit-shards #dataChartOverlay #closebtn {
+  padding: 8px;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  color: snow;
+  display: block; /* Display block instead of inline */
+}
+.spirit-shards #dataChartOverlay #closebtn:hover, .spirit-shards #dataChartOverlay #closebtn:focus {
+  color: white;
+}
+.spirit-shards #dataChartOverlay #dataChart {
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 48px);
+  background: snow;
+  border-radius: 4px;
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  padding: 8px;
+}
+.spirit-shards #dataChartOverlay #dataChart p {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.spirit-shards #dataChartOverlay #dataChart table {
+  width: 100%;
+  border: 1px solid black;
+}
+.spirit-shards #dataChartOverlay #dataChart table th {
+  background-color: #43464D;
+  color: snow;
+  padding: 5px;
+}
+.spirit-shards #dataChartOverlay #dataChart table td {
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #000;
+}
+.spirit-shards #dataChartOverlay #dataChart table .profitable {
+  background-color: #88D969;
+}
+.spirit-shards #dataChartOverlay #dataChart table tr:nth-child(odd) {
+  background-color: #eeeeee;
+}
+.spirit-shards .coinContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.spirit-shards .singleValue {
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+.spirit-shards .coinImage {
+  margin-left: 3px;
+  margin-right: 4px;
+}
+.spirit-shards input[type=text] {
+  border: 1px solid black;
+  height: 32px;
+  padding: 6px;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 16px;
+}
+.spirit-shards .descriptor {
+  font-weight: bold;
+  margin-right: 4px;
+}
+.spirit-shards #ssOwned, .spirit-shards #ssAvgProfit {
+  margin-right: 10px;
+}
+.spirit-shards #displayOptions {
+  background-color: snow;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 16px;
+  -webkit-box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+          box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+}
+.spirit-shards #displayOptions input[name=avgResultInput], .spirit-shards #displayOptions input[name=ssbreakpointInput] {
+  width: 70px;
+  text-align: center;
+}
+.spirit-shards #displayData {
+  width: 100%;
+}
+.spirit-shards #displayData table {
+  background: snow;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 16px;
+  -webkit-box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+          box-shadow: 2px 2px 0px 0px rgb(138, 138, 138);
+  border-collapse: collapse;
+}
+.spirit-shards #displayData table th {
+  background: #43464D;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  color: snow;
+  padding: 8px 12px;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+.spirit-shards #displayData table th:last-of-type {
+  border-right: none;
+}
+.spirit-shards #displayData table tr {
+  border-bottom: 1px solid rgba(78, 65, 65, 0.2);
+}
+.spirit-shards #displayData table tr:last-of-type {
+  border-bottom: none;
+}
+.spirit-shards #displayData table td {
+  border-right: 1px solid rgba(78, 65, 65, 0.2);
+  padding: 8px 12px;
+}
+.spirit-shards #displayData table td:last-of-type {
+  border-right: none;
+}
+.spirit-shards #displayData table td p {
+  text-align: center;
+}
+.spirit-shards #displayData table .gridRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.spirit-shards #displayData table .gridRow .coinContainer {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.spirit-shards #displayData table .itemText p:nth-of-type(2) {
+  margin-top: 4px;
+}
+.spirit-shards #displayData table .centerRow {
+  text-align: center;
+}
+.spirit-shards #displayData table .avgReturnRow {
+  text-align: center;
+  font-size: 28px;
+}
+.spirit-shards #displayData table .craftingMaterialsRow p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2px;
+}
+.spirit-shards #displayData table .craftingMaterialsRow p .materialImage {
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+.spirit-shards #displayData table .craftingMaterialsRow p:last-of-type {
+  margin-bottom: 0;
+}
+.spirit-shards #displayData table .profitableRow td {
+  background-color: rgba(136, 217, 105, 0.15);
+}
+.spirit-shards #displayData table .profitableRow .profitable {
+  background-color: rgba(136, 217, 105, 0.5);
+}
+.spirit-shards #displayData table .mainMaterialImage {
+  border: 1px solid #000;
+  height: 48px;
+  margin-right: 8px;
+  width: 48px;
+}
+.spirit-shards #displayData table .divider {
+  margin-left: 4px;
+}
+.spirit-shards #displayData table tr:nth-child(even) {
+  background: rgba(78, 65, 65, 0.04);
+}/*# sourceMappingURL=spirit-shards.css.map */

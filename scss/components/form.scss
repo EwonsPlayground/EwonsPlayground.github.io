@@ -1,0 +1,45 @@
+// Styling for the base form
+
+// Include Variables and Mixins for use
+@import '../assets/variables', '../assets/mixins';
+
+.form {
+	&__body {
+		margin-bottom: 16px;
+	}
+
+	&__label {
+		display: block;
+		font-size: 15px;
+		margin-bottom: 4px;
+		padding: 0 2px;
+		width: 100%;
+	}
+
+	&__input {
+		background: $white;
+		border: 1px solid rgba($brown-main,0.4);
+		font-family: $font-sansserif-main;
+    font-size: 15px;
+    padding: 6px 8px;
+		width: 100%;
+	}
+
+	&__footer {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__confirmation {
+		@include transition(opacity);
+		font-size: 15px;
+		opacity: 0;
+		visibility: hidden;
+
+		&.show {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
