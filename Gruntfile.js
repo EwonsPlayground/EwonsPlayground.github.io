@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				},
 				options: {
 					replacements: [{
-						pattern: /.html/g,
+						pattern: /\.html/g,
 						replacement: ''
 					}]
 				}
